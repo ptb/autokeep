@@ -42,8 +42,9 @@
 .dropbox/
 .dropbox.cache/
 .fseventsd/
-.node_modules/
 .svn/
+
+node_modules/
 
 /Network/*
 /Previous Systems.localized/
