@@ -65,6 +65,7 @@ cat > "${PLIST}" <<-EOF
     <string>commit</string>
     <string>--all</string>
     <string>--allow-empty-message</string>
+    <string>--gpg-sign</string>
     <string>--message=</string>
   </array>
   <key>RunAtLoad</key>
