@@ -42,6 +42,7 @@
 .dropbox/
 .dropbox.cache/
 .fseventsd/
+.sass-cache/
 .svn/
 
 node_modules/
