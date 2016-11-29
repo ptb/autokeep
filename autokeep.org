@@ -60,6 +60,7 @@ if ! git ls-remote --exit-code github &> /dev/null; then
 
   if [[ ! -z "$REPO_NAME" ]]; then
     git remote add github "${REPO_NAME}"
+    /bin/echo
     if git push --all --porcelain --set-upstream github | grep -q "rejected"; then
       /bin/echo
       while true; do
