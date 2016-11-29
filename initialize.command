@@ -35,7 +35,7 @@ if ! git ls-remote --exit-code github &> /dev/null; then
 
   if [[ ! -z "$REPO_NAME" ]]; then
     git remote add github "${REPO_NAME}"
-    if git push --all --set-upstream github | grep -q "rejected"; then
+    if git push --all --porcelain --set-upstream github | grep -q "rejected"; then
       while true; do
         read -n 1 -p "Force update? " yn
         case $yn in
