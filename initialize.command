@@ -40,14 +40,16 @@ if ! git ls-remote --exit-code github &> /dev/null; then
       while true; do
         read -n 1 -p "Force update? " yn
         case $yn in
-          [Yy]* ) /bin/echo "\n"; git push --all --force --set-upstream github; break;;
+          [Yy]* ) /bin/echo; git push --all --force --set-upstream github; break;;
           [Nn]* ) /bin/echo; break;;
         esac
       done
+      /bin/echo
     fi
   fi
 fi
 
+/bin/echo
 while true; do
   read -n 1 -p "Create commit messages automatically? " yn
   case $yn in
@@ -55,6 +57,7 @@ while true; do
     [Nn]* ) rm -f ".prepare-commit-msg" "${HOOKS}/prepare-commit-msg"; break;;
   esac
 done
+/bin/echo
 /bin/echo
 
 if [ -d "${HOOKS}" ] && [ ! -e "${HOOKS}/post-commit" ]; then
