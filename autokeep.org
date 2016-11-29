@@ -66,11 +66,10 @@ if ! git ls-remote --exit-code github &> /dev/null; then
       while true; do
         read -n 1 -p "Force update? " yn
         case $yn in
-          [Yy]* ) /bin/echo; git push --all --force --set-upstream github; break;;
+          [Yy]* ) /bin/echo; /bin/echo; git push --all --force --set-upstream github; break;;
           [Nn]* ) /bin/echo; break;;
         esac
       done
-      /bin/echo
     fi
   fi
 fi
