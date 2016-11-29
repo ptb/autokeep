@@ -10,10 +10,11 @@ if [ -d "${CWD}/.git" ]; then
   while true; do
     read -n 1 -p "Re-Initialize Git Repository? " yn
     case $yn in
-      [Yy]* ) rm -rf "${CWD}/.git"; /bin/echo; break;;
+      [Yy]* ) rm -rf "${CWD}/.git"; break;;
       [Nn]* ) break;;
     esac
   done
+  /bin/echo
 fi
 
 if [ ! -d "${CWD}/.git" ]; then
@@ -30,10 +31,20 @@ if ! git ls-remote --exit-code github &> /dev/null; then
     | xargs -L 1 open
 
   read -p "Remote Git Repository: " REPO_NAME
+  /bin/echo
 
   if [[ ! -z "$REPO_NAME" ]]; then
     git remote add github "${REPO_NAME}"
-    git push --all --set-upstream github
+    if git push --all --set-upstream github | grep -q "rejected"; then
+      while true; do
+        read -n 1 -p "Force update? " yn
+        case $yn in
+          [Yy]* ) git push --all --force --set-upstream github; break;;
+          [Nn]* ) break;;
+        esac
+      done
+      /bin/echo
+    fi
   fi
 fi
 
@@ -44,6 +55,7 @@ while true; do
     [Nn]* ) rm -f ".prepare-commit-msg" "${HOOKS}/prepare-commit-msg"; break;;
   esac
 done
+/bin/echo
 
 if [ -d "${HOOKS}" ] && [ ! -e "${HOOKS}/post-commit" ]; then
   /bin/sh -c "cd '${HOOKS}' && ln '../../.post-commit' 'post-commit'"
