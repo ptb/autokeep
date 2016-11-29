@@ -36,14 +36,14 @@ if ! git ls-remote --exit-code github &> /dev/null; then
   if [[ ! -z "$REPO_NAME" ]]; then
     git remote add github "${REPO_NAME}"
     if git push --all --porcelain --set-upstream github | grep -q "rejected"; then
+      /bin/echo
       while true; do
         read -n 1 -p "Force update? " yn
         case $yn in
-          [Yy]* ) git push --all --force --set-upstream github; break;;
-          [Nn]* ) break;;
+          [Yy]* ) /bin/echo "\n"; git push --all --force --set-upstream github; break;;
+          [Nn]* ) /bin/echo; break;;
         esac
       done
-      /bin/echo
     fi
   fi
 fi
