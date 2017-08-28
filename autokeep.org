@@ -159,7 +159,7 @@ autokeep_push () {
 ** Define Function =autokeep_gitignore=
 #+begin_src sh :noweb tangle
 autokeep_gitignore () {
-  cat << 'EOF' > "$(git rev-parse --git-dir)/info/exclude"
+  cat << 'EOF' >> "$(git rev-parse --git-dir)/info/exclude"
 <<gitignore>>
 EOF
 

@@ -99,7 +99,7 @@ autokeep_push () {
 # Define Function =autokeep_gitignore=
 
 autokeep_gitignore () {
-  cat << 'EOF' > "$(git rev-parse --git-dir)/info/exclude"
+  cat << 'EOF' >> "$(git rev-parse --git-dir)/info/exclude"
 # -*- mode: gitignore; -*-
 
 **/Library/Caches/
